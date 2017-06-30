@@ -1,0 +1,22 @@
+.page{
+    list-style: none;
+}
+.page>li{
+    float: left;
+    padding: 5px;
+    cursor: pointer;
+    line-height: 20px;
+    font-size: 20px;
+}
+.page .pageItem{
+    color: #0099FF;
+}
+.page .pageItemActive{
+    color:white;
+}
+.page .pageItem:hover{
+    color:white;
+}
+.page .pageItemDisable{
+    color: #0099FF;
+}
