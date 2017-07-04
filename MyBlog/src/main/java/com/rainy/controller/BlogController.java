@@ -1,80 +1,31 @@
 package com.rainy.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.rainy.model.Blog;
 import com.rainy.repository.BlogRepository;
 import com.rainy.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by PC on 2017/5/3.
+ * Created by PC on 2017/7/3.
  */
-/*@RestController
-@RequestMapping(value = "/tests")*/
 @Controller
+@RequestMapping(value = "/blogs")
 public class BlogController {
     @Autowired
     private BlogService blogService;
     @Autowired
     private BlogRepository blogRepository;
-    @RequestMapping("/")
-    public String index(ModelMap map){
-        return "index";
-    }
-    @RequestMapping("/blogs")
-    public String blogs(ModelMap map){
-        return "/page/blogs";
-    }
-    @RequestMapping("/albums")
-    public String albums(ModelMap map){
-        return "/page/albums";
-    }
-    @RequestMapping("/music")
-    public String music(ModelMap map){
-        return "/page/music";
-    }
-    @RequestMapping("/message")
-    public String message(ModelMap map){
-        return "/page/message";
-    }
-    @RequestMapping("/ace")
-    public String ace(ModelMap map){
-        return "/page/ace";
-    }
-    @RequestMapping("/me")
-    public String me(ModelMap map){
-        return "/page/me";
-    }
-    @RequestMapping("/show")
-    public String show(ModelMap map){
-        return "/page/showPhone";
-    }
-    @RequestMapping("/login")
-    public String login(ModelMap map){
-        Map<String,Object> mapp = new HashMap<>();
-        mapp.put("name", "marry");
-        map.addAttribute("loginName", mapp);
-        return "page/login";
-    }
-    @RequestMapping("/login/check")
-    @ResponseBody
-    public Map<String,Object> check(){
-        Map<String,Object> map = new HashMap<>();
-        map.put("name","jack");
-        System.out.println(map.get("name"));
-        return map;
-    }
-
 
     @RequestMapping(value = "/queryRecentBlogs",method = {RequestMethod.POST})
     @ResponseBody
@@ -82,4 +33,22 @@ public class BlogController {
         List<Blog> blogList = blogService.queryRecentBlogs();
         return blogList;
     }
+    @RequestMapping(value = "/queryAllBlogs",method = {RequestMethod.POST})
+    @ResponseBody
+    public Map<String,Object> queryAllBlogs(){
+        Map<String,Object> result=new HashMap<>();
+        List<Blog> isTopBlogs = blogService.queryIsTopBlogs();
+        List<Blog> isNotTopBlogs = blogService.queryIsNotTopBlogs();
+        result.put("isTop",isTopBlogs);
+        result.put("isNotTop",isNotTopBlogs);
+        return result;
+    }
+
+    @RequestMapping(value = "/{blogId}",method = {RequestMethod.GET})
+    public String viewArticle(@PathVariable String blogId,ModelMap map){
+        Blog blog = blogRepository.findOne(Integer.parseInt(blogId));
+        map.addAttribute("blog", blog);
+        return "/page/showBlog";
+    }
+
 }

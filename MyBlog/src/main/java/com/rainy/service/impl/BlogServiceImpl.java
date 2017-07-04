@@ -19,4 +19,14 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> queryRecentBlogs() {
         return blogRepository.queryRecentBlogs();
     }
+
+    @Override
+    public List<Blog> queryIsTopBlogs() {
+        return blogRepository.queryIsTopBlogs();
+    }
+
+    @Override
+    public List<Blog> queryIsNotTopBlogs() {
+        return blogRepository.queryIsNotTopBlogs();
+    }
 }

@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 function findArticle(){
     $.ajax({
-        url: "/queryRecentBlogs",
+        url: "/blogs/queryRecentBlogs",
         type: 'POST',
         data: {},
         dataType: "json",

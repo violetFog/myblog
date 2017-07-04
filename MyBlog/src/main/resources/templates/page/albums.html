@@ -35,27 +35,40 @@
     <img src="/images/blackHole_1.jpg" style="height: 30px;width: 100%"/>
 
     <div  class="row main" id="dr-main">
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
-            <a href="/">
-                <img src="/images/logo.jpg"/>
-                <div>logo</div>
-            </a>
+        <div class="mode_gb" style="width: 100%">
+            <div class="mod-title">
+                <div class="mod-tab-list">
+                    <ul>
+                        <li><a href="/albums" class="wrap selected">相册</a></li>
+                        <li hidden="hidden"><a class="wrap">相册创建</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
-            <a href="javascript:funtest()">
-                <img src="/images/angle.jpg"/>
-                <div>angel</div>
-            </a>
+        <div id="dr-albums">
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
+                <a href="javascript:showPictures(albumId)">
+                    <img src="/images/logo.jpg"/>
+                    <div>logo</div>
+                </a>
+            </div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
+                <a href="javascript:showPictures()">
+                    <img src="/images/angle.jpg"/>
+                    <div>angel</div>
+                </a>
+            </div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">3</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">4</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">5</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">6</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">7</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">8</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">9</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">10</div>
+            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">11</div>
         </div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">3</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">4</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">5</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">6</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">7</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">8</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">9</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">10</div>
-        <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">11</div>
     </div>
     <div id="dr-foot">
         <div style="background: #ffffff;height: 20px"></div>

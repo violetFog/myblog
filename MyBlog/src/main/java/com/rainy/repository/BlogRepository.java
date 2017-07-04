@@ -14,5 +14,8 @@ import java.util.List;
 public interface BlogRepository extends JpaRepository<Blog,Integer> {
     @Query("from Blog b where b.createTime >= '2017-01-01 00:00:00'")
     public List<Blog> queryRecentBlogs();
-
+    @Query("from Blog b where b.isTop=1")
+    public List<Blog> queryIsTopBlogs();
+    @Query("from Blog b where b.isTop=0")
+    public List<Blog> queryIsNotTopBlogs();
 }

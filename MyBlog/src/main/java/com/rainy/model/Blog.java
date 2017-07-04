@@ -19,6 +19,7 @@ public class Blog implements Serializable{
     private Date updateTime;   //更新时间
     private Date createTime=new Date();   //创建时间
     private Integer number=0;        //浏览次数
+    private Integer comment=0;               //评论次数
     private String img;        //图片
     private Integer isTop=0; //是否置顶 0:false 1:true
 
@@ -83,6 +84,15 @@ public class Blog implements Serializable{
     public void setNumber(Integer number) {
         this.number = number;
     }
+    @Column(name = "comment")
+    public Integer getComment() {
+        return comment;
+    }
+
+    public void setComment(Integer comment) {
+        this.comment = comment;
+    }
+
     @Column(name = "img")
     public String getImg() {
         return img;
@@ -114,6 +124,7 @@ public class Blog implements Serializable{
         if (updateTime != null ? !updateTime.equals(blog.updateTime) : blog.updateTime != null) return false;
         if (createTime != null ? !createTime.equals(blog.createTime) : blog.createTime != null) return false;
         if (number != null ? !number.equals(blog.number) : blog.number != null) return false;
+        if (comment != null ? !comment.equals(blog.comment) : blog.comment != null) return false;
         if (img != null ? !img.equals(blog.img) : blog.img != null) return false;
         return !(isTop != null ? !isTop.equals(blog.isTop) : blog.isTop != null);
 
@@ -128,11 +139,11 @@ public class Blog implements Serializable{
         result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (comment != null ? comment.hashCode() : 0);
         result = 31 * result + (img != null ? img.hashCode() : 0);
         result = 31 * result + (isTop != null ? isTop.hashCode() : 0);
         return result;
     }
-
 
     @Override
     public String toString() {
@@ -144,6 +155,7 @@ public class Blog implements Serializable{
                 ", updateTime=" + updateTime +
                 ", createTime=" + createTime +
                 ", number=" + number +
+                ", comment=" + comment +
                 ", img='" + img + '\'' +
                 ", isTop=" + isTop +
                 '}';
