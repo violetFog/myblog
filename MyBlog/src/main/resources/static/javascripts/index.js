@@ -23,7 +23,6 @@ function findArticle(){
         data: {},
         dataType: "json",
         success:function(data){
-            console.log(data);
             var str="";
             for(var i=0;i<data.length;i++){
                 if(data[i].isTop==1){

@@ -54,6 +54,12 @@ var  page = {
     "initPageEvent":function(listCount){
         $("#"+page.pageId +">li[class='pageItem']").on("click",function(){
             page.setPageListCount(listCount,$(this).attr("page-data"));
+            var blogType=$("#dr-classification .active span").html();
+            if(blogType=="全部日志"){
+                blogType=null;
+            }
+            console.log($(this).attr("page-data"));
+            queryBlogs(blogType,$(this).attr("page-data"));
         });
     },
     "getPageListModel":function(pageCount,currentPage){

@@ -3,12 +3,12 @@ package com.rainy.service;
 import com.rainy.model.Blog;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by PC on 2017/6/19.
  */
 public interface BlogService {
-    public List<Blog> queryRecentBlogs();
-    public List<Blog> queryIsTopBlogs();
-    public List<Blog> queryIsNotTopBlogs();
+     List<Blog> queryRecentBlogs();
+     Map<String,Object> queryBlogs(final String blogType,final String title,String pageStr,String limitStr);
 }
