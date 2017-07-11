@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/showBlog.js"></script>
     <link rel="stylesheet" href="/css/styles.css" type="text/css" media="all"/>
 </head>
 <body>
@@ -34,14 +35,14 @@
 
     <div class="row main" id="dr-main">
         <div>
-            <h3 class="tm-gold-text" style="border-bottom: 1px dashed #ccc;text-align: center;padding-bottom: 10px;">Jenkins部署nodejs项目<br/>
+            <h3 class="tm-gold-text" style="border-bottom: 1px dashed #ccc;text-align: center;padding-bottom: 10px;"><span id="dr-main-title"></span><br/>
                 <time class="smallfont">
-                    <i></i>2017-06-02 14:15:32
+                    <i id="dr-main-updateTime"></i>
                 </time>
-                <span class="smallfont">浏览（85）</span>
-                <span class="smallfont">类别：持续集成</span>
+                <span class="smallfont" id="dr-main-look"></span>
+                <span class="smallfont" id="dr-main-type"></span>
             </h3>
-            <div>
+            <div id="dr-main-text" style="color: #fff">
 
             </div>
             <div class="bdsharebuttonbox bdshare-button-style0-32" data-bd-bind="1499074814173"><a href="#"

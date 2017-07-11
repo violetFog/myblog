@@ -3,7 +3,7 @@
  */
 jQuery(function ($) {
     var count = queryBlogs(null,1);
-    queryclassification();
+    queryclassification(null);
     $("#page").initPage(count,1);
 
 });
@@ -30,7 +30,6 @@ function queryBlogs(blogTypes,page){
     }
     params.title=title;
     params.limit=10;
-    console.log(params);
     var article="";
     $.ajax({
         url:"/blogs/queryBlogs",
@@ -45,7 +44,7 @@ function queryBlogs(blogTypes,page){
                     article +=" <div class='blog-list'>"
                         +"<div class='blog-text'>"
                         +"<span style='color: red;'>[置顶]</span>"
-                        +"<a href='/blogs/"+blogs[i].blogId+"'target='_blank'>"
+                        +"<a href='/blogs/view/"+blogs[i].blogId+"'target='_blank'>"
                         +"<span>"+blogs[i].title+"</span>"
                         +"</a>"
                         +"</div>"
@@ -58,7 +57,7 @@ function queryBlogs(blogTypes,page){
                 }else{
                     article +=" <div class='blog-list'>"
                         +"<div class='blog-text'>"
-                        +"<a href='/article/"+blogs[i].blogId+"'target='_blank'>"
+                        +"<a href='/blogs/view/"+blogs[i].blogId+"'target='_blank'>"
                         +"<span>"+blogs[i].title+"</span>"
                         +"</a>"
                         +"</div>"
@@ -69,6 +68,8 @@ function queryBlogs(blogTypes,page){
                         +"</div>"
                         +"</div>"
                 }
+
+
             }
             $("#dr-blog-main").html("");
             $("#dr-blog-main").append(article);
@@ -85,16 +86,16 @@ function queryBlogs(blogTypes,page){
 
 
 function queryclassification(){
-    var count=0;
     $.ajax({
         url:"/blogs/queryBlogsType",
         type:"POST",
         data:{},
         dataType: "json",
         success:function(data){
-            count=data.count;
+            var count=data.count;
+            var classification=""
             var typeList=data.typeList;
-            var classification="<li class='classification active'><a href='javascript:queryBlogs()' onclick='actives(this)'><span class='left'>全部日志</span><span class='right'>("+count+")</span></a></li>";
+            classification="<li class='classification active'><a href='javascript:queryBlogs()' onclick='actives(this)'><span class='left'>全部日志</span><span class='right'>("+count+")</span></a></li>";
             for(var k=0;k<typeList.length;k++){
                 classification +="<li class='classification'><a onclick='actives(this)' href='javascript:queryBlogs(\""+typeList[k][0]+"\""+","+1+")'><span class='left'>"+typeList[k][0]+"</span><span class='right'>("+typeList[k][1]+")</span></a></li>"
             }
@@ -111,4 +112,8 @@ function actives(obj){
     $(obj).parents("#dr-classification").find(".active").removeClass("active");
     $(obj).parent().addClass("active");
     $("#search").val("");
+}
+
+function switchToSummary(){
+
 }

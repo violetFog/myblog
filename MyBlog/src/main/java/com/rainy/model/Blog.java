@@ -16,7 +16,7 @@ public class Blog implements Serializable{
     private String title;      //标题
     private String text;       //正文
     private String blogType;       //类别
-    private Date updateTime;   //更新时间
+    private Date updateTime=new Date();   //更新时间
     private Date createTime=new Date();   //创建时间
     private Integer number=0;        //浏览次数
     private Integer comment=0;               //评论次数
