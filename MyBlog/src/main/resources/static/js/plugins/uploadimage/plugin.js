@@ -42,13 +42,13 @@ tinymce.PluginManager.add('uploadimage', function (editor) {
 
     editor.addButton('uploadimage', {
         icon: 'image',
-        tooltip: '上传图片',
+        tooltip: 'Insert img',
         onclick: selectLocalImages
     });
 
     editor.addMenuItem('uploadimage', {
         icon: 'image',
-        text: '上传图片',
+        text: 'Insert img',
         context: 'tools',
         onclick: selectLocalImages
     });

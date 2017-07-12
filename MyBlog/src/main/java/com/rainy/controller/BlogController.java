@@ -77,10 +77,12 @@ public class BlogController {
         return result;
     }
     @RequestMapping(value = "/view/{blogId}",method = {RequestMethod.GET})
-    public String viewArticle(@PathVariable String blogId,ModelMap map){
+    public String viewArticle(@PathVariable String blogId){
         Blog blog = blogRepository.findOne(Integer.parseInt(blogId));
+        Integer number = blog.getNumber();
+        blog.setNumber(number+1);
         System.out.println(blog);
-        map.addAttribute("blog", blog);
+        blogRepository.saveAndFlush(blog);
         return "/page/showBlog";
     }
 
@@ -106,18 +108,21 @@ public class BlogController {
 
     @RequestMapping(value = "/upload")
     @ResponseBody
-    public Map<String,Object> upload(HttpServletRequest request,@RequestParam("thumbnail") MultipartFile tmpFile) throws IOException, ServletException {
+    public Map<String,Object> upload(HttpServletRequest request,@RequestParam("thumbnail") MultipartFile tmpFile){
         Map<String,Object> map = new HashMap<>();
         String targetDirectory = request.getSession().getServletContext().getRealPath("/upload");
         String tmpFileName = tmpFile.getOriginalFilename();
         File target = new File(targetDirectory, tmpFileName);
-        List<File> list = new ArrayList<>();
-        list.add(target);
+        List<String> list = new ArrayList<>();
+        list.add("/upload/"+tmpFileName);
+        System.out.println(list.get(0));
         try {
             // 保存文件
             FileUtils.copyInputStreamToFile(tmpFile.getInputStream(), target);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+           // e.printStackTrace();
+            map.put("err",e);
+            return map;
         }
         map.put("file_path",list);
         return map;

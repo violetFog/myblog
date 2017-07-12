@@ -11,6 +11,7 @@ jQuery(function ($) {
 
 function queryBlogs(blogTypes,page){
     var params={};
+    var type;
     var title=$("#search").val();
 
     if(!isNull(blogTypes)){
@@ -28,6 +29,12 @@ function queryBlogs(blogTypes,page){
     }else{
         params.page=page;
     }
+    var spam=$("#querySwitch span").html();
+    if(spam=="切换到摘要"){
+        type=0;
+    }else{
+        type=1;
+    }
     params.title=title;
     params.limit=10;
     var article="";
@@ -39,38 +46,87 @@ function queryBlogs(blogTypes,page){
         success:function(data){
             var blogs=data.blogs;
             var count=data.count;
-            for(var i=0;i<blogs.length;i++){
-                if(blogs[i].isTop==1){
-                    article +=" <div class='blog-list'>"
-                        +"<div class='blog-text'>"
-                        +"<span style='color: red;'>[置顶]</span>"
-                        +"<a href='/blogs/view/"+blogs[i].blogId+"'target='_blank'>"
-                        +"<span>"+blogs[i].title+"</span>"
-                        +"</a>"
-                        +"</div>"
-                        +"<div class='blog-operation'>"
-                        +"<span>"+blogs[i].updateTime+"</span>"
-                        +"<span>("+blogs[i].comment+"/"+blogs[i].number+")</span>"
-                        +"<span hidden='hidden'>删除</span>"
-                        +"</div>"
-                        +"</div>"
-                }else{
-                    article +=" <div class='blog-list'>"
-                        +"<div class='blog-text'>"
-                        +"<a href='/blogs/view/"+blogs[i].blogId+"'target='_blank'>"
-                        +"<span>"+blogs[i].title+"</span>"
-                        +"</a>"
-                        +"</div>"
-                        +"<div class='blog-operation'>"
-                        +"<span>"+blogs[i].updateTime+"</span>"
-                        +"<span>("+blogs[i].comment+"/"+blogs[i].number+")</span>"
-                        +"<span hidden='hidden'>删除</span>"
-                        +"</div>"
-                        +"</div>"
+            if(type==0){
+                for(var i=0;i<blogs.length;i++){
+                    if(blogs[i].isTop==1){
+                        article +=" <div class='blog-list'>"
+                            +"<div class='blog-text'>"
+                            +"<span style='color: red;'>[置顶]</span>"
+                            +"<a href='/blogs/view/"+blogs[i].blogId+"'target='_blank'>"
+                            +"<span>"+blogs[i].title+"</span>"
+                            +"</a>"
+                            +"</div>"
+                            +"<div class='blog-operation'>"
+                            +"<span>"+blogs[i].updateTime+"</span>"
+                            +"<span>("+blogs[i].comment+"/"+blogs[i].number+")</span>"
+                            +"<span hidden='hidden'>删除</span>"
+                            +"</div>"
+                            +"</div>"
+                    }else{
+                        article +=" <div class='blog-list'>"
+                            +"<div class='blog-text'>"
+                            +"<a href='/blogs/view/"+blogs[i].blogId+"'target='_blank'>"
+                            +"<span>"+blogs[i].title+"</span>"
+                            +"</a>"
+                            +"</div>"
+                            +"<div class='blog-operation'>"
+                            +"<span>"+blogs[i].updateTime+"</span>"
+                            +"<span>("+blogs[i].comment+"/"+blogs[i].number+")</span>"
+                            +"<span hidden='hidden'>删除</span>"
+                            +"</div>"
+                            +"</div>"
+                    }
                 }
+            }else{
+                for(var i=0;i<blogs.length;i++){
+                    if(blogs[i].isTop==1){
+                        article+="<article class='excerpt' style='padding:10px; width: 740px;'>"
+                            +"<div class='tm-related-post'>"
+                            +"<div class='media-left media-middle'>"
+                            +"<a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'>"
+                            +  " <img class='media-object' src='/images/nanjo.jpg' style='width:200px;height: 150px;' alt='"+blogs[i].title+"' title='"+blogs[i].title+"' data-bd-imgshare-binded='1'/>"
+                            +  " </a>"
+                            +  " </div>"
+                            +  " <div class='media-body'>"
+                            +  " <a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'><h4 class='index_title' align='center'><span style='color: red;'>[置顶]</span>"+blogs[i].title+"</h4></a>"
+                            +"<div class='tm-small-font tm-media-description' style='width: 520px;height: 150px;overflow:hidden'>"+blogs[i].text+"</div>"
+                            + "  <div class='data' style='margin-top: 10px'>"
+                            +  "  <span class='time_n artfont1'>"+blogs[i].updateTime+"</span>"
+                            +   " <span class='read_n artfont2'>浏览("+blogs[i].number+")</span>"
+                            +"<span class='comment_n artfont3'>" + blogs[i].blogType+" </span>"
+                            +   " <a href='/blogs/view/"+blogs[i].blogId+"' target='_blank' class='btn readall'>阅读全文&gt;&gt;</a>"
+                            +"</div>"
+                            +"</div>"
+                            +"</div>"
+                            +"</article>"
+                    }
+                }
+                for(var i=0;i<blogs.length;i++){
+                    if(blogs[i].isTop==0){
+                        article+="<article class='excerpt' style='padding:10px; width: 740px;'>"
+                            +"<div class='tm-related-post'>"
+                            +"<div class='media-left media-middle'>"
+                            +"<a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'>"
+                            +  " <img class='media-object' src='/images/nanjo.jpg' style='width:200px;height: 150px;' alt='"+blogs[i].title+"' title='"+blogs[i].title+"' data-bd-imgshare-binded='1'/>"
+                            +  " </a>"
+                            +  " </div>"
+                            +  " <div class='media-body'>"
+                            +  " <a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'><h4 class='index_title' align='center'>"+blogs[i].title+"</h4></a>"
+                            +"<div class='tm-small-font tm-media-description' style='width: 520px;height: 150px;overflow:hidden'>"+blogs[i].text+"</div>"
+                            + "  <div class='data' style='margin-top: 10px'>"
+                            +  "  <span class='time_n artfont1'>"+blogs[i].updateTime+"</span>"
+                            +   " <span class='read_n artfont2'>浏览("+blogs[i].number+")</span>"
+                            +"<span class='comment_n artfont3'>"+blogs[i].blogType +"</span>"
+                            +   " <a href='/blogs/view/"+blogs[i].blogId+"' target='_blank' class='btn readall'>阅读全文&gt;&gt;</a>"
+                            +"</div>"
+                            +"</div>"
+                            +"</div>"
+                            +"</article>"
+                    }
 
-
+                }
             }
+
             $("#dr-blog-main").html("");
             $("#dr-blog-main").append(article);
             $("#page").initPage(count,params.page);
@@ -93,9 +149,8 @@ function queryclassification(){
         dataType: "json",
         success:function(data){
             var count=data.count;
-            var classification=""
             var typeList=data.typeList;
-            classification="<li class='classification active'><a href='javascript:queryBlogs()' onclick='actives(this)'><span class='left'>全部日志</span><span class='right'>("+count+")</span></a></li>";
+            var classification="<li class='classification active'><a href='javascript:queryBlogs()' onclick='actives(this)'><span class='left'>全部日志</span><span class='right'>("+count+")</span></a></li>";
             for(var k=0;k<typeList.length;k++){
                 classification +="<li class='classification'><a onclick='actives(this)' href='javascript:queryBlogs(\""+typeList[k][0]+"\""+","+1+")'><span class='left'>"+typeList[k][0]+"</span><span class='right'>("+typeList[k][1]+")</span></a></li>"
             }
@@ -115,5 +170,16 @@ function actives(obj){
 }
 
 function switchToSummary(){
-
+    var spam=$("#querySwitch span").html();
+    var page=$(".pageItemActive").attr("page-data");
+    if(spam=="切换到摘要"){
+        $("#querySwitch span").html("切换到列表");
+    }else{
+        $("#querySwitch span").html("切换到摘要");
+    }
+    var blogType=$("#dr-classification .active span").html();
+    if(blogType=="全部日志"){
+        blogType=null;
+    }
+    queryBlogs(blogType,page);
 }

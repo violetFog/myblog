@@ -3,8 +3,8 @@
  */
 jQuery(function($){
     queryBlog(document.URL.split("\/")[5]);
-})
 
+})
 
 function queryBlog(blogId){
     $.ajax({

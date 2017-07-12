@@ -58,7 +58,6 @@ var  page = {
             if(blogType=="全部日志"){
                 blogType=null;
             }
-            console.log($(this).attr("page-data"));
             queryBlogs(blogType,$(this).attr("page-data"));
         });
     },
