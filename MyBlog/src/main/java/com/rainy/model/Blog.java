@@ -20,7 +20,6 @@ public class Blog implements Serializable{
     private Date createTime=new Date();   //创建时间
     private Integer number=0;        //浏览次数
     private Integer comment=0;               //评论次数
-    private String img;        //图片
     private Integer isTop=0; //是否置顶 0:false 1:true
 
     @Id
@@ -57,8 +56,8 @@ public class Blog implements Serializable{
         this.blogType = blogType;
     }
     @Column(name = "update_time")
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -67,8 +66,8 @@ public class Blog implements Serializable{
         this.updateTime = updateTime;
     }
     @Column(name = "create_time")
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getCreateTime() {
         return createTime;
     }
@@ -93,14 +92,6 @@ public class Blog implements Serializable{
         this.comment = comment;
     }
 
-    @Column(name = "img")
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
     @Column(name = "is_top")
     public Integer getIsTop() {
         return isTop;
@@ -125,7 +116,6 @@ public class Blog implements Serializable{
         if (createTime != null ? !createTime.equals(blog.createTime) : blog.createTime != null) return false;
         if (number != null ? !number.equals(blog.number) : blog.number != null) return false;
         if (comment != null ? !comment.equals(blog.comment) : blog.comment != null) return false;
-        if (img != null ? !img.equals(blog.img) : blog.img != null) return false;
         return !(isTop != null ? !isTop.equals(blog.isTop) : blog.isTop != null);
 
     }
@@ -140,7 +130,6 @@ public class Blog implements Serializable{
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (number != null ? number.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        result = 31 * result + (img != null ? img.hashCode() : 0);
         result = 31 * result + (isTop != null ? isTop.hashCode() : 0);
         return result;
     }
@@ -156,7 +145,6 @@ public class Blog implements Serializable{
                 ", createTime=" + createTime +
                 ", number=" + number +
                 ", comment=" + comment +
-                ", img='" + img + '\'' +
                 ", isTop=" + isTop +
                 '}';
     }

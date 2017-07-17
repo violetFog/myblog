@@ -6,9 +6,11 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/evenFlow.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <script src="/js/jquery-2.1.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.form.js"></script>
+    <script src="/js/bootstrap.js"></script>
     <link rel="stylesheet" href="/css/styles.css" type="text/css" media="all"/>
     <script type="text/javascript" src="/javascripts/album.js"></script>
+    <script type="text/javascript" src="/utils/util.js"></script>
 
 </head>
 <body>
@@ -39,43 +41,74 @@
             <div class="mod-title">
                 <div class="mod-tab-list">
                     <ul>
-                        <li><a href="/albums" class="wrap selected">相册</a></li>
-                        <li hidden="hidden"><a class="wrap">相册创建</a></li>
+                        <li><a class="wrap selected" href="/albums">相册</a></li>
+                        <li><a class="wrap" id="creatAlbum" href="javascript:void(0);" onclick="createAlbum()">相册创建</a></li>
                     </ul>
                 </div>
             </div>
-
         </div>
         <div id="dr-albums">
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
-                <a href="javascript:showPictures(albumId)">
-                    <img src="/images/logo.jpg"/>
-                    <div>logo</div>
-                </a>
-            </div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
-                <a href="javascript:showPictures()">
-                    <img src="/images/angle.jpg"/>
-                    <div>angel</div>
-                </a>
-            </div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">3</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">4</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">5</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">6</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">7</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">8</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">9</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">10</div>
-            <div class="albums left" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">11</div>
         </div>
     </div>
     <div id="dr-foot">
-        <div style="background: #ffffff;height: 20px"></div>
+
     </div>
 </div>
-    <div id="test" style="display: none;width: 1000px;height: 1000px;margin: 0 auto;background: #0099ff">
-
+    <div class="modal fade" id="createAlbumModal">
+        <div class="modal-dialog">
+            <div class="modal-content message_align">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="pop_create_album" style="height: auto;overflow: hidden;">
+                        <p>
+                            <span class="form_name"><label for="album_name">相册名称：</label></span>
+                            <input id="album_name" name="album_name" class="int_txt"  maxlength="30" type="text"/>
+                            <span class="count_txt"><span id="name_word">0</span>/30</span>
+                        </p>
+                        <p>
+                            <span class="form_name">
+                                <label for="album_desc">相册描述：</label>
+                            </span>
+                            <textarea id="album_desc" name="album_desc" class="area_txt" style="font-size:12px;"></textarea>
+                            <span class="count_txt"><span id="desc_word">0</span>/2000</span>
+                        </p>
+                        <p>
+                            <span class="form_name"><label for="album_type">分类：</label></span>
+                            <span id="cs_sel">
+                                <select id="album_type" name="album_type">
+                                    <option value="love">最爱</option>
+                                    <option value="character">人物</option>
+                                    <option value="scenery">风景</option>
+                                    <option value="animal">动物</option>
+                                    <option value="travels">游记</option>
+                                    <option value="animation">动漫</option>
+                                    <option value="life">生活</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="form_name">
+                                <label for="album_desc">相册上传：</label>
+                            </span>
+                            <span>
+                                <form id="album_form" action="/albums/upload" method="post" enctype="multipart/form-data">
+                                    <input id="album_file" type="file" name="file" multiple="multiple" accept="image/jpg,image/jpeg,image/png,image/gif"/>
+                                </form>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="del_url"/>
+                    <button type="button" class="btn btn-success" onclick="addNewAlbum()">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

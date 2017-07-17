@@ -19,8 +19,7 @@ import java.util.Map;
 /**
  * Created by PC on 2017/5/3.
  */
-/*@RestController
-@RequestMapping(value = "/tests")*/
+
 @Controller
 public class MainController {
 

@@ -265,6 +265,13 @@ a.readall {
     font-weight:100;
 
 }
+.mod-tab-list ul li a {
+    color: #fff;
+    opacity: 0.8;
+    font-size:25px;
+    line-height:46px;
+    font-weight:100;
+}
 .wrap{
     color: #fff;
     opacity: 0.8;
@@ -449,3 +456,61 @@ a.readall {
     margin: 6px;
 }
 
+.pop_create_album{
+    padding: 20px 0 10px 99px;
+    width: 600px;
+    position: relative;
+    margin: 0 auto;
+    color: #5F5F5F;
+    line-height: 100%;
+}
+.pop_create_album p{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form_name{
+    display: block;
+    position: absolute;
+    left: -99px;
+    width: 95px;
+    text-align: right;
+}
+.fn_select{
+    top: 4px;
+}
+.area_txt{
+    width: 252px;
+    height: 52px;
+    padding: 3px 2px;
+    overflow: auto;
+    background: #FFF;
+    border: 1px #C8C8C8 solid;
+}
+.int_txt{
+    width: 252px;
+    padding: 0 2px;
+    height: 19px;
+    padding-top: 0\9;
+    height: 18px\9;
+    line-height: 20px\9;
+    background: #FFF;
+    border: 1px #C8C8C8 solid;
+}
+.count_txt{
+    display: block;
+    width: 100px;
+    position: absolute;
+    left: 265px;
+    top: 4px;
+    font-size: 10px;
+    font-family: Tahoma;
+
+}
+
+.albums input{
+    display: none;
+}
+.albums:hover input{
+   display: block;
+}

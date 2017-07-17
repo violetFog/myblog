@@ -8,8 +8,9 @@ jQuery(function($){
 function addNewType(){
     var flag=true;
     var newType=$("#newType").val();
-    if(isNull(newType)){
+    if(!newType){
         alert("请您输入分类名称");
+        flag=false;
     }
     $("#blogType option").each(function(data){
         if($(this).val()==newType){
@@ -58,7 +59,7 @@ function check(){
     var flag=true;
     var title=$("#blogTitle").val();
     if(!title){
-        alert("填写标题！")
+        alert("填写标题！");
         flag=false;
     }
     if(flag){

@@ -115,7 +115,6 @@ public class BlogController {
         File target = new File(targetDirectory, tmpFileName);
         List<String> list = new ArrayList<>();
         list.add("/upload/"+tmpFileName);
-        System.out.println(list.get(0));
         try {
             // 保存文件
             FileUtils.copyInputStreamToFile(tmpFile.getInputStream(), target);

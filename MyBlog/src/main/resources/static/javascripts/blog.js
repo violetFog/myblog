@@ -14,7 +14,7 @@ function queryBlogs(blogTypes,page){
     var type;
     var title=$("#search").val();
 
-    if(!isNull(blogTypes)){
+    if(blogTypes){
         params.blogType=blogTypes;
     }else{
         var blogType=$("#dr-classification .active span").html();
@@ -24,7 +24,7 @@ function queryBlogs(blogTypes,page){
         params.blogType=blogType;
     }
 
-    if(isNull(page)){
+    if(!page){
         params.page=1;
     }else{
         params.page=page;
@@ -82,14 +82,9 @@ function queryBlogs(blogTypes,page){
                     if(blogs[i].isTop==1){
                         article+="<article class='excerpt' style='padding:10px; width: 740px;'>"
                             +"<div class='tm-related-post'>"
-                            +"<div class='media-left media-middle'>"
-                            +"<a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'>"
-                            +  " <img class='media-object' src='/images/nanjo.jpg' style='width:200px;height: 150px;' alt='"+blogs[i].title+"' title='"+blogs[i].title+"' data-bd-imgshare-binded='1'/>"
-                            +  " </a>"
-                            +  " </div>"
                             +  " <div class='media-body'>"
                             +  " <a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'><h4 class='index_title' align='center'><span style='color: red;'>[置顶]</span>"+blogs[i].title+"</h4></a>"
-                            +"<div class='tm-small-font tm-media-description' style='width: 520px;height: 150px;overflow:hidden'>"+blogs[i].text+"</div>"
+                            +"<div class='tm-small-font tm-media-description' style='width: 100%;height: 150px;overflow:hidden'>"+blogs[i].text+"</div>"
                             + "  <div class='data' style='margin-top: 10px'>"
                             +  "  <span class='time_n artfont1'>"+blogs[i].updateTime+"</span>"
                             +   " <span class='read_n artfont2'>浏览("+blogs[i].number+")</span>"
@@ -105,14 +100,9 @@ function queryBlogs(blogTypes,page){
                     if(blogs[i].isTop==0){
                         article+="<article class='excerpt' style='padding:10px; width: 740px;'>"
                             +"<div class='tm-related-post'>"
-                            +"<div class='media-left media-middle'>"
-                            +"<a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'>"
-                            +  " <img class='media-object' src='/images/nanjo.jpg' style='width:200px;height: 150px;' alt='"+blogs[i].title+"' title='"+blogs[i].title+"' data-bd-imgshare-binded='1'/>"
-                            +  " </a>"
-                            +  " </div>"
                             +  " <div class='media-body'>"
                             +  " <a href='/blogs/view/"+blogs[i].blogId+"' target='_blank'><h4 class='index_title' align='center'>"+blogs[i].title+"</h4></a>"
-                            +"<div class='tm-small-font tm-media-description' style='width: 520px;height: 150px;overflow:hidden'>"+blogs[i].text+"</div>"
+                            +"<div class='tm-small-font tm-media-description' style='width: 100%;height: 150px;overflow:hidden'>"+blogs[i].text+"</div>"
                             + "  <div class='data' style='margin-top: 10px'>"
                             +  "  <span class='time_n artfont1'>"+blogs[i].updateTime+"</span>"
                             +   " <span class='read_n artfont2'>浏览("+blogs[i].number+")</span>"
