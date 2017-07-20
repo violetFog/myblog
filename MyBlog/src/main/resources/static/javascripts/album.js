@@ -12,11 +12,11 @@ function showAlbums(){
             var albumList=data.albumList;
             for(var i=0;i<albumList.length;i++){
                 albums +="<div style='position: relative' class='albums left' ondrop='drop(event,this)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event, this)'>"
-                    +" <a href='/albums/view/"+albumList[i].albumId+"'>"
-                    +" <img src="+albumList[i].cover+"/>"
-                    +"<div style='width: 172px;height: 18px;overflow: hidden;'>"+albumList[i].albumName+"</div>"
+                    +" <a href='"+albumList[i].src+"' target='_blank'>"
+                    +" <img src='"+albumList[i].cover+"' onerror='imgError(this)'/>"
+                    +"<div  title='"+albumList[i].albumName+"'>"+albumList[i].albumName+"</div>"
                     +"</a>"
-                    +"<input type='button' style='position: absolute;top: 10px;right: 5px;' value='按钮' onclick='deleteAlbum("+albumList[i].albumId+")'/>"
+                    +"<input type='button' style='position: absolute;top: 10px;right: 5px;' value='删除' onclick='deleteAlbum("+albumList[i].albumId+")'/>"
                     +"</div>"
             }
             $("#dr-albums").html("");
@@ -31,9 +31,16 @@ function createAlbum(){
     $("#createAlbumModal").modal("show");
     $("#album_name").val("");
     $("#album_desc").val("");
+    var file = $("#album_file");
+    file.after(file.clone().val(""));
+    file.remove();
+
+}
+function imgError(image){
+    $(image).attr("src", "/images/default.png");
 }
 function addNewAlbum(){
-    var album_name=$("#album_name").val();
+    var album_name=$("#album_name").val().trim();
     if(!album_name){
         alert("相册名不能为空");
         return;
@@ -51,30 +58,32 @@ function addNewAlbum(){
         },
         success: function (data) {
             if (data && data.file_path) {
-                param.albumFile=data.file_path
+                param.albumFile=data.file_path;
+                param.src=data.src
+                $.ajax({
+                    url:"/albums/createAlbum",
+                    type:"POST",
+                    data:param,
+                    dataType:"json",
+                    success:function(data){
+                        var album=data.album;
+                        var str=" <div style='position: relative' class='albums left' ondrop='drop(event,this)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event, this)'>"
+                            +" <a href='"+album.src+"' target='_blank'>"
+                            +"<img src='"+album.cover+"' onerror='imgError(this)' />"
+                            +"<div title='"+album.albumName+"'>"+album.albumName+"</div>"
+                            +"</a>"
+                            +"<input type='button' style='position: absolute;top: 10px;right: 5px;' value='删除' onclick='deleteAlbum("+album.albumId+")'/>"
+                            +"</div>"
+                        $("#dr-albums").append(str)
+                    },
+                    error:function(err){
+                        alert("错误");
+                    }
+                })
             }
         }
     });
-    $.ajax({
-        url:"/albums/createAlbum",
-        type:"POST",
-        data:param,
-        dataType:"json",
-        success:function(data){
-            var album=data.album;
-            var str=" <div style='position: relative' class='albums left' ondrop='drop(event,this)' ondragover='allowDrop(event)' draggable='true' ondragstart='drag(event, this)'>"
-                +"<a href='javascript:showPictures("+album.albumId+")'>"
-                +"<img src="+album.cover+"/>"
-                +"<div style='width: 172px;height: 18px;overflow: hidden;'>"+album.albumName+"</div>"
-                +"</a>"
-                +"<input type='button' style='position: absolute;top: 10px;right: 5px;' value='按钮'/>"
-                +"</div>"
-            $("#dr-albums").append(str)
-        },
-        error:function(err){
-            alert("错误");
-        }
-    })
+
 
 }
 
@@ -85,9 +94,7 @@ function deleteAlbum(albumId){
         data:{albumId:albumId},
         dataType:"json",
         success:function(data){
-            if(data==0){
-                alert("成功");
-            }else{
+            if(data==1){
                 alert("失败")
             }
             showAlbums()

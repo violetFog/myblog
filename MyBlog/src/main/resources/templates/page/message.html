@@ -7,10 +7,14 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/evenFlow.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <script src="/js/jquery-2.1.1.min.js"></script>
-    <script src="/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
-    <script src="/js/jquery-func.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/message.js"></script>
     <link rel="stylesheet" href="/css/styles.css" type="text/css" media="all"/>
+
+    <link href="/js/themes/default/default.css" rel="stylesheet" />
+    <script src="/js/kindeditor-min.js"></script>
+    <script src="/js/emoticons.js"></script>
+    <script src="/js/zh_CN.js"></script>
 </head>
 <body>
 <div style="width: 1000px;margin: 0 auto">
@@ -36,7 +40,22 @@
     <img src="/images/blackHole_1.jpg" style="height: 30px;width: 100%"/>
 
     <div class="row main" id="dr-main">
+        <div style="margin-bottom: 15px">
+            <h4 style="color: #fff;margin-left: 50px;font-weight: bold;">发表您的留言</h4>
+            <form style="margin-left: 50px;width: 700px">
+                <textarea name="content" style="width:700px;height:200px;visibility:hidden;display: block;"></textarea>
+                <input type="button" value="发表"/>
+                <input type="button" value="取消"/>
+            </form>
+        </div>
 
+        <div style="margin-left: 50px">
+            <h4 style="color: #fff;">最新留言(<span>4</span>)</h4>
+        </div>
+
+        <div id="dr-message" style="min-height: 400px">
+
+        </div>
     </div>
     <div id="dr-foot">
 

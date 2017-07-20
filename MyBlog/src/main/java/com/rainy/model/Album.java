@@ -15,7 +15,8 @@ public class Album {
     private String albumName;     //相册名称
     private String albumDescription;  //相册描述
     private String albumType;        //相册类型
-    private String cover="/images/default.png";          //封面路径
+    private String cover="/images/default.png";//封面压缩图
+    private String src;//原始图
     private Date createTime=new Date();           //创建时间
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -60,6 +61,15 @@ public class Album {
     public void setCover(String cover) {
         this.cover = cover;
     }
+    @Column(name = "src")
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
+
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
@@ -84,6 +94,7 @@ public class Album {
             return false;
         if (albumType != null ? !albumType.equals(album.albumType) : album.albumType != null) return false;
         if (cover != null ? !cover.equals(album.cover) : album.cover != null) return false;
+        if (src != null ? !src.equals(album.src) : album.src != null) return false;
         return !(createTime != null ? !createTime.equals(album.createTime) : album.createTime != null);
 
     }
@@ -95,6 +106,7 @@ public class Album {
         result = 31 * result + (albumDescription != null ? albumDescription.hashCode() : 0);
         result = 31 * result + (albumType != null ? albumType.hashCode() : 0);
         result = 31 * result + (cover != null ? cover.hashCode() : 0);
+        result = 31 * result + (src != null ? src.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         return result;
     }
@@ -107,6 +119,7 @@ public class Album {
                 ", albumDescription='" + albumDescription + '\'' +
                 ", albumType='" + albumType + '\'' +
                 ", cover='" + cover + '\'' +
+                ", src='" + src + '\'' +
                 ", createTime=" + createTime +
                 '}';
     }

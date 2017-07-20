@@ -56,8 +56,8 @@ public class Blog implements Serializable{
         this.blogType = blogType;
     }
     @Column(name = "update_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getUpdateTime() {
         return updateTime;
     }
