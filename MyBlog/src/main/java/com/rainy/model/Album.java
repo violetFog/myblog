@@ -3,6 +3,7 @@ package com.rainy.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="album")
-public class Album {
+public class Album implements Serializable{
     private int albumId;           //相册Id
     private String albumName;     //相册名称
     private String albumDescription;  //相册描述

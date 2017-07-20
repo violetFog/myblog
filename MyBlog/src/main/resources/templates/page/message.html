@@ -6,8 +6,10 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/style.css"/>
     <link rel="stylesheet" type="text/css" media="all" href="/css/evenFlow.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link href="/css/gxlyb_css.css" rel="stylesheet" type="text/css"/>
     <script src="/js/jquery-2.1.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.form.js"></script>
     <script type="text/javascript" src="/javascripts/message.js"></script>
     <link rel="stylesheet" href="/css/styles.css" type="text/css" media="all"/>
 
@@ -42,19 +44,68 @@
     <div class="row main" id="dr-main">
         <div style="margin-bottom: 15px">
             <h4 style="color: #fff;margin-left: 50px;font-weight: bold;">发表您的留言</h4>
-            <form style="margin-left: 50px;width: 700px">
+            <form id="dr-message-form" style="margin-left: 50px;width: 700px" action="/message/write" method="post">
+                <input type="hidden" name="ip"/>
                 <textarea name="content" style="width:700px;height:200px;visibility:hidden;display: block;"></textarea>
-                <input type="button" value="发表"/>
-                <input type="button" value="取消"/>
+                <input type="button" value="发表" onclick="writeMessage()"/>
+                <input type="button" value="取消" onclick="message_reset()"/>
             </form>
         </div>
 
-        <div style="margin-left: 50px">
-            <h4 style="color: #fff;">最新留言(<span>4</span>)</h4>
+        <div style="margin: 0 50px;border-color: #E0E0E0;border-width: 0 0 1px;border-style: solid;">
+            <h4 style="color: #fff;">最近留言(<span id="title_count">4</span>)</h4>
         </div>
-
         <div id="dr-message" style="min-height: 400px">
+            <div id="container">
+              <!--  <div class="float">
+                    <img src="/images/anonymity_green.png"/>
+                </div>
+                <div class="float">
+                    <div class="content">
+                        <span>匿名留言</span>
+                        <span>第1楼</span>
+                        <div style="margin:2px 0">
+                            狗子的自信都是主人给的，
+                            我从畏畏缩缩变成小区一霸，都因为我爹没来由的骄傲。
+                            2010年，老爹去抱狗，宠物店的姑娘好心地提醒他说：“这条金毛的种不纯。”
+                            很小我就明白了，人类喜欢混血儿，说混血儿聪明漂亮，但人类不怎么喜欢混血狗。
+                            来宠物店的客人，许多都是特别懂品相的。哈士奇要三把火，边牧要七白三通，这些学者连狗子身上多块黑毛都无法接受，更别提我了，他们说我太失格了。我的毛没有那么金黄，而是闪亮的奶茶色，我的脸比金毛冠军的标准细了些，恐怕这辈子也无法整容。
+                        </div>
+                        <span>2016-01-04 16:20:10</span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="float">
+                    <img src="/images/anonymity_grey.png"/>
+                </div>
+                <div class="float">
+                    <div class="content">
+                        其中有两个朋友是假的。我不太明白，不爱何必装欣喜。
+                        老爹说不能点名，因为万一见面，
+                        你还是要假装热情，我还是要假装雀跃。
+                        每天都有人指着我说：“哎，快看小金毛！”
+                        我以为自己真的很小，看着走路经过的泰迪窜过草坪，在我家院子的栅栏钻来钻去，非常羡慕。于是鼓起勇气也去钻，结果卡在栅栏里了。
+                        本来我打算用屁股先钻的，后来发现方向不太好把握，就用头先钻。才过去一只耳朵，半张狗脸动都不能动了。
+                        其实还蛮疼的。
+                        院子虽然很小，世界虽然很大，但不能钻出去，要堂堂正正从门口走出去，不然会被卡住脸。
 
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="float">
+                    <img src="/images/anonymity_pink.png"/>
+                </div>
+                <div class="float">
+                    <div class="content">
+                        长大后我不叼拖鞋不啃茶几，还是被揍过一次。
+                        那天看到辆车停在楼道口，我突然心里难过得要死，撒腿跑过去蹲在车门边，仰头用力摇尾巴。我想和以前一样上车。车里下来陌生人，被我吓到尖叫。老爹冲过来揪我耳朵离开，边跟人道歉边骂我。我嚎啕大哭，
+                        老爹默默看着我。这是最后一次。后来就真的长大了。
+                        小边牧和他的妈妈就住在我的隔壁，他是我在这个小区认识的第一个朋友。
+                        有天我们路过小区门口的超市，小边牧浑身湿漉漉的，傻傻地坐在石头台阶上。
+                    </div>
+                </div>
+                <div class="clear"></div>-->
+            </div>
         </div>
     </div>
     <div id="dr-foot">
