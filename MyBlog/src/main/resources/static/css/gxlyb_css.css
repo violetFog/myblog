@@ -2,7 +2,7 @@ div[id="container"]{
 	padding: 10px;
 	
 }
-#container img{
+#container .userAvatar{
 	margin: 15px 0px 0px 10px;
 	width: 100px;
 	height: 100px;
@@ -11,7 +11,7 @@ div[id="container"]{
 	-webkit-transition: -webkit-transform 1s linear;
 }
 
-#container img:hover{
+#container .userAvatar:hover{
 	-webkit-transform: rotate(180deg);
 }
 .content{

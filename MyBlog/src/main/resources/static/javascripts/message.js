@@ -42,7 +42,7 @@ function showMessage(){
                 for(var i=messageList.length-1;i>=0;i--){
                     var random=getRandom();
                     var img=imgs[random];
-                    message += "<div class='float'>"
+                    message += "<div class='float userAvatar'>"
                         +"<img src='/images/"+img+"'/>"
                         +"</div>"
                         +"<div class='float'>"
