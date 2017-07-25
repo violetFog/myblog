@@ -12,8 +12,8 @@ function setDiv(divId,musicId,type){
     var str=" <div id="+divId+" class='music_div'>"
         +"<iframe frameborder='no' border='0' marginwidth='0' marginheight='0' width='100%' height='600px' src='//music.163.com/outchain/player?type="+type+"&amp;id="+musicId+"&amp;auto=1&amp;height=600px'></iframe>"
         +"</div>";
-    $("#right").html("");
-    $("#right").append(str);
+    $("#music_right").html("");
+    $("#music_right").append(str);
 
 }
 function showUl(id2){

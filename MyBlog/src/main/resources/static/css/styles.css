@@ -522,10 +522,10 @@ a.readall {
 }
 
 /*---------------------------------music--------------------------------------*/
-#left label{
+#music_left label{
     margin-bottom: 0;
 }
-#left a{
+#music_left a{
     color: #fff;
     padding-bottom: 2px;
 }
