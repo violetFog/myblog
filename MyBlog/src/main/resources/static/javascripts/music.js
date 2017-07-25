@@ -16,20 +16,20 @@ function setDiv(divId,musicId,type){
     $("#music_right").append(str);
 
 }
-function showUl(id2){
-    $(id2).find("div a").removeAttr("href");
-    $(id2).find("div a").attr("href","javascript:closeUl(\'"+id2+"\')");
-    $(id2).find("span").html("↑");
-    $(id2).find("ul").css("display","block");
-    $(id2).find("ul").removeClass("nav-hide");
-    $(id2).find("ul").addClass("nav-show");
+function showUl(id){
+    $(id).find("div a").removeAttr("href");
+    $(id).find("div a").attr("href","javascript:closeUl(\'"+id+"\')");
+    $(id).find("span").html("↑");
+    $(id).find("ul").css("display","block");
+    $(id).find("ul").removeClass("nav-hide");
+    $(id).find("ul").addClass("nav-show");
 }
 
-function closeUl(id2){
-    $(id2).find("ul").css("display","none");
-    $(id2).find("div a").removeAttr("href");
-    $(id2).find("div a").attr("href","javascript:showUl(\'"+id2+"\')");
-    $(id2).find("ul").removeClass("nav-show");
-    $(id2).find("ul").addClass("nav-hide");
-    $(id2).find("span").html("↓");
+function closeUl(id){
+    $(id).find("ul").css("display","none");
+    $(id).find("div a").removeAttr("href");
+    $(id).find("div a").attr("href","javascript:showUl(\'"+id+"\')");
+    $(id).find("ul").removeClass("nav-show");
+    $(id).find("ul").addClass("nav-hide");
+    $(id).find("span").html("↓");
 }
