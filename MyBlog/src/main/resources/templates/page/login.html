@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8"/>
     <title></title>
-    <script type="text/javascript" src="/javascripts/my.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/javascripts/login.js"></script>
+    <style>
+        body{
+            background-image: url(/images/psycho.jpg);
+        }
+    </style>
 </head>
 <body>
-<input type="button" onclick="search()" value="china" id="china"/>
-
-
-<div id="dialog_main_1" class="qz_dialog_layer_main">
-    <div class="qz_dialog_custom custom_left" id="dragdrop_1" style="cursor: move;">
+    <div>
+        <form id="loginForm" action="/login/check" method="post">
+            帐号:<input type="text" name="loginName" id="loginName"/><br/>
+            密码:<input type="password" name="loginPsd" id="loginPsd"/><br/>
+            验证码:<input type="text" name="inputCode" id="inputCode" />
+            <input type="text" name="checkCode" id="checkCode" disabled="disabled"/><br/>
+            <input type="button" value="登录" onclick="validateCode()"/>
+            <input type="button" value="重置" onclick="user_reset()"/>
+        </form>
     </div>
-    <div class="qz_dialog_custom custom_top" id="dragdrop_2" style="cursor: move;">
-
-    </div>
-    <div id="dialog_head_1" class="qz_dialog_layer_title" style="cursor: move;">
-    <h3 id="dialog_title_1">添加日志分类</h3>
-        <button id="dialog_button_1" title="关闭" class="qz_dialog_btn_close">
-        <span class="none">╳</span>
-    </button>
-    </div>
-    <div id="dialog_content_1" class="qz_dialog_layer_cont" style="height:115px;">
-        <iframe id="popup_dialog_frame" allowtransparency="yes" class="qz_popup_inner_iframe" src="https://qzs.qq.com/qzone/newblog/v5/add_category_dlg.html" width="380" height="115" frameborder="no">
-        </iframe>
-    </div>
-</div>
-
 </body>
 
 </html>

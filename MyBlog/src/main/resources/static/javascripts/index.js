@@ -3,8 +3,24 @@
  */
 $(document).ready(function () {
     findArticle();
+    checkLogin()
 });
-
+function checkLogin(){
+    $.ajax({
+        url:"/login/checkLogin",
+        type:"POST",
+        data:{},
+        dataType:"json",
+        success:function(data){
+            if(data.success){
+                $("#loginDiv").attr("hidden","hidden");
+            }
+        },
+        error:function(err){
+            alert("错误");
+        }
+    })
+}
 
 function findArticle(){
     $.ajax({

@@ -224,33 +224,7 @@ a.readall {
     user-select: none;
     padding-top: 35px;
 }
-.Mercury{
-    background: url(/images/Mercury.jpg) no-repeat center center  ;
-}
-.Venus{
-    background: url(/images/Venus.jpg) no-repeat center center  ;
-}
-.Mars{
-    background: url(/images/Mars.jpg) no-repeat center center  ;
-}
-.Earth{
-    background: url(/images/Earth.jpg) no-repeat center center  ;
-}
-.Jupiter{
-    background: url(/images/Jupiter.jpg) no-repeat center center  ;
-}
-.Saturn{
-    background: url(/images/Saturn.jpg) no-repeat center center  ;
-}
-.Uranus{
-    background: url(/images/Uranus.jpg) no-repeat center center  ;
-}
-.Neptune{
-    background: url(/images/Neptune.jpg) no-repeat center center  ;
-}
-.Sun{
-    background: url(/images/Sun.jpg) no-repeat center center  ;
-}
+
 
 /*____________________________________________________*/
 

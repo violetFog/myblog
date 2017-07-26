@@ -1,6 +1,23 @@
 jQuery(function($) {
     showAlbums();
+    checkLogin();
 });
+function checkLogin(){
+    $.ajax({
+        url:"/login/checkLogin",
+        type:"POST",
+        data:{},
+        dataType:"json",
+        success:function(data){
+            if(data.success){
+                $("#createAlbum").removeAttr("hidden");
+            }
+        },
+        error:function(err){
+            alert("错误");
+        }
+    })
+}
 function showAlbums(){
     var albums="";
     $.ajax({

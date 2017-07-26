@@ -57,20 +57,7 @@ public class MainController {
     }
     @RequestMapping("/login")
     public String login(ModelMap map){
-        Map<String,Object> mapp = new HashMap<>();
-        mapp.put("name", "marry");
-        map.addAttribute("loginName", mapp);
-        return "page/login";
+        return "/page/login";
     }
-    @RequestMapping("/login/check")
-    @ResponseBody
-    public Map<String,Object> check(){
-        Map<String,Object> map = new HashMap<>();
-        map.put("name","jack");
-        System.out.println(map.get("name"));
-        return map;
-    }
-
-
 
 }

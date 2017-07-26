@@ -5,8 +5,25 @@ jQuery(function ($) {
     var count = queryBlogs(null,1);
     queryclassification(null);
     $("#page").initPage(count,1);
-
+    checkLogin();
 });
+
+function checkLogin(){
+    $.ajax({
+        url:"/login/checkLogin",
+        type:"POST",
+        data:{},
+        dataType:"json",
+        success:function(data){
+            if(data.success){
+                $("#writeBlog").removeAttr("hidden");
+            }
+        },
+        error:function(err){
+            alert("错误");
+        }
+    })
+}
 
 
 function queryBlogs(blogTypes,page){
